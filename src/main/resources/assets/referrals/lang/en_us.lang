@@ -1,0 +1,4 @@
+commands.referredby.usage=/referredby <player>
+commands.referredby.already_referred=You have already received your reward for being referred.
+commands.referredby.wrong_timestamp=You cannot be referred by %s because they joined the server after you.
+commands.referredby.never_joined=You cannot be referred by %s because they have never joined the server.

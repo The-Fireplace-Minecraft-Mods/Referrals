@@ -1,0 +1,13 @@
+[
+{
+  "modid": "referrals",
+  "name": "Referrals",
+  "description": "A server-side mod to reward players for referring others to your server.",
+  "version": "${version}",
+  "mcversion": "",
+  "logoFile": "",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/referrals",
+  "authorList": ["The_Fireplace"],
+  "screenshots": []
+}
+]
