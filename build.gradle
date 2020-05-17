@@ -50,12 +50,16 @@ dependencies {
     shade('org.yaml:snakeyaml:1.25') {
         transitive = false
     }
+    shade ':ConfigYAML-1.0.0:'
 }
 
 repositories {
     //SnakeYAML
     maven {
         url = "http://oss.sonatype.org/content/groups/public/"
+    }
+    flatDir {
+        dirs 'libs'
     }
 }
 

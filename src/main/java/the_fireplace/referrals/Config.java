@@ -5,6 +5,8 @@ import com.google.common.collect.Maps;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+import the_fireplace.configyaml.ConfigYaml;
+import the_fireplace.configyaml.YAMLComment;
 
 import java.io.File;
 import java.io.FileReader;
@@ -22,8 +24,11 @@ public class Config {
         return instance;
     }
     //Config options
+    @YAMLComment("Server locale - the client's locale takes precedence if Referrals is installed there.")
     public String locale = "en_us";
+    @YAMLComment("Ranked Rewards - this replaces the standard rewards when the referrer has referred this many players.")
     public Map<Integer, List<String>> rankedRewards = Maps.newHashMap();
+    @YAMLComment("Standard Rewards - this is command based, add your commands without the /.")
     public List<String> standardRewards = Lists.newArrayList("wallet add [referrer] 500", "wallet add [referred] 500", "say [referrer] has referred [referred] to the server! They have been given 500.00 gp each.");
 
     public Config() {
@@ -37,7 +42,7 @@ public class Config {
         Yaml yaml = new Yaml(new Constructor(Config.class));
         try {
             FileReader reader = new FileReader(configFile);
-            Config cfg = (Config) yaml.load(reader);
+            Config cfg = yaml.load(reader);
             reader.close();
             return cfg;
         } catch(IOException e) {
@@ -64,7 +69,7 @@ public class Config {
             FileWriter writer = new FileWriter(configFile);
             DumperOptions options = new DumperOptions();
             options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-            Yaml yaml = new Yaml(options);
+            Yaml yaml = new ConfigYaml(options);
             yaml.dump(new Config(), writer);
             writer.close();
         } catch(IOException e) {
