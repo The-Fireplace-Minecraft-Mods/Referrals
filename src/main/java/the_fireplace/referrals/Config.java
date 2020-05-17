@@ -62,7 +62,9 @@ public class Config {
             //noinspection ResultOfMethodCallIgnored
             configFile.getParentFile().mkdirs();
             FileWriter writer = new FileWriter(configFile);
-            Yaml yaml = new Yaml();
+            DumperOptions options = new DumperOptions();
+            options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+            Yaml yaml = new Yaml(options);
             yaml.dump(new Config(), writer);
             writer.close();
         } catch(IOException e) {
