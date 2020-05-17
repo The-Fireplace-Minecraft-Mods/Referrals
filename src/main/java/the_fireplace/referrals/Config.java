@@ -2,6 +2,7 @@ package the_fireplace.referrals;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -24,6 +25,11 @@ public class Config {
     public String locale = "en_us";
     public Map<Integer, List<String>> rankedRewards = Maps.newHashMap();
     public List<String> standardRewards = Lists.newArrayList("wallet add [referrer] 500", "wallet add [referred] 500", "say [referrer] has referred [referred] to the server! They have been given 500.00 gp each.");
+
+    public Config() {
+        rankedRewards.put(1, Lists.newArrayList("wallet add [referrer] 1000", "wallet add [referred] 500", "say [referrer] has referred [referred] to the server! They have been given 500.00 gp each.", "say [referrer] has referred a player for the first time! They have been given an extra 500.00 gp."));
+        rankedRewards.put(5, Lists.newArrayList("wallet add [referrer] 1000", "wallet add [referred] 500", "say [referrer] has referred [referred] to the server! They have been given 500.00 gp each.", "say [referrer] has referred a player for the fifth time! They have been given an extra 500.00 gp."));
+    }
 
     private static Config load() {
         if(!configFile.exists())
